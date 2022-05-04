@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/4af1b5e5-6456-48ae-b2a8-4ee730696f60/resourceGroups/vietdoo2/providers/Microsoft.Web/sites/vietdoo",
+    "appService.deploySubpath": "."
+}

@@ -1,6 +1,6 @@
-import cv2 # OpenCV for image editing, computer vision and deep learning
-import numpy as np # Numpy for math/array operations
-from source.utils import get_folder_dir # Custom function for better directory name handling
+import cv2
+import numpy as np 
+from source.utils import get_folder_dir
 
 def detect_faces_with_ssd(image, min_confidence = 0.2):
     '''Detect face in an image'''
@@ -70,5 +70,4 @@ def detect_faces_with_ssd(image, min_confidence = 0.2):
             
             faces_list.append(face_dict)
             
-    # Return the face image area and the face rectangle
     return faces_list

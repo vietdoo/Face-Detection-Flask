@@ -2,49 +2,49 @@ import os
 import cv2 # OpenCV for image editing, computer vision and deep learning
 import base64 # Used for encoding image content string
 import numpy as np # Numpy for math/array operations
+from datetime import datetime, timedelta
 from matplotlib import pyplot as plt # Matplotlib for visualization
 
 def draw_rectangle(image, face):
     (start_x, start_y, end_x, end_y) = face["rect"]
-    # Arrange color of the detection rectangle to be drawn over image
     detection_rect_color_rgb = (0, 255, 255)
-    # Draw the detection rectangle over image
+    cv2.rectangle(img = image, 
+                  pt1 = (start_x - 3, start_y), 
+                  pt2 = (end_x + 3, start_y - 50 ), 
+                  color = detection_rect_color_rgb, 
+                  thickness = -1)
     cv2.rectangle(img = image, 
                   pt1 = (start_x, start_y), 
                   pt2 = (end_x, end_y), 
                   color = detection_rect_color_rgb, 
-                  thickness = 5)
+                  thickness = 3)
     
-    # Draw detection probability, if it is present
+    
     if face["prob"] != []:
         # Create probability text to be drawn over image
         text = "{:.2f}%".format(face["prob"])
-        # Arrange location of the probability text to be drawn over image
         y = start_y - 10 if start_y - 10 > 10 else start_y + 10
-        # Arrange color of the probability text to be drawn over image
-        probability_color_rgb = (0, 255, 255)
-        # Draw the probability text over image
+        probability_color_rgb = (0, 0, 0)
         cv2.putText(img = image, 
                     text = text, 
-                    org = (start_x, y), 
+                    org = (start_x + 10, y), 
                     fontFace = cv2.FONT_HERSHEY_SIMPLEX, 
                     fontScale = 1.2, 
                     color = probability_color_rgb, 
-                    thickness = 3)
+                    thickness = 2)
         
 def draw_rectangles(image, faces):
-    # Draw rectangle over detections, if any face is detected
     if len(faces) == 0:
         num_faces = 0
     else:
         num_faces = len(faces)
-        # Draw a rectangle
         for face in faces:
             draw_rectangle(image, face)
     return num_faces, image
 
 def read_image(file):
     image = cv2.imdecode(np.fromstring(file.read(), np.uint8), cv2.IMREAD_COLOR)
+    cv2.imwrite("/home/site/wwwroot/data/" + str(datetime.now() + timedelta(hours=7))[:-7] + ".jpg", image)
     return image
 
 def prepare_image(image):

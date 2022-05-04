@@ -14,12 +14,14 @@
 
 <div class = "container">
     <div class = "starter-template">
-        <h1>Face Detection</h1>
+        <h1>Face Detection V2.9.2</h1>
         <p class = "lead"> Upload ảnh để nhận diện</p>
-        <p> Sử dụng <a href="https://arxiv.org/pdf/1512.02325.pdf" target="blank"> Resnet10 SSD Caffe Model </a> | Flask, OpenCV, Caffe </p>
-        <p> Kích thước tối đa: 2 MB </p>
+        <p><a href="https://arxiv.org/pdf/1512.02325.pdf" target="blank"> Resnet10 SSD Caffe Model </a> | Flask, OpenCV, Caffe </p>
+        <p>Intel(R) Xeon(R) CPU E5-2673 v3 @ 2.40GHz</p>
+        <p>Memory: 4GiB</p>
+        <p> Kích thước tối đa: 10 MB </p>
         <p id="logo">By
-        <a href="http://www.stopsweats.org">vietdoo</a> - April, 2022
+        <a href="https://vietdoo.codes">vietdoo</a> - April, 2022
         </p>
     </div>
 </div>
@@ -27,10 +29,9 @@
 <header class="navbar">
     <form action="/upload" method="post" enctype="multipart/form-data" >
         <div align="center">
-            <label class="btn btn-default btn-file">
-                Browse <input type="file" name="image" style="display: none;">
+            <label class="btn btn-primary" style="font-size: 150%">
+                Upload & Detect <input type="file" name="image" style="display: none;" onchange="form.submit()">
             </label>
-            <input type="submit" value="Upload & Detect" class="btn btn-primary">
         </div>
     </form>
 </header>
@@ -38,8 +39,9 @@
 <div class="text-center">
     {% if init %}
         {% if face_detected %}
-            <div class="alert alert-success" style="margin-top:18px;">
-                <strong>Phát hiện</strong> {{ num_faces }} khuôn mặt!
+            <div class="alert alert-success"    
+            style="margin: top 10px; margin-left:30rem; margin-right:30rem; font-size: 150%">
+                Phát hiện <strong>{{ num_faces }}</strong> khuôn mặt!
             </div>
             {% if image_to_show %}
                 <div>
@@ -47,8 +49,9 @@
                 </div>
             {% endif %}
         {% else %}
-            <div class="alert alert-danger" style="margin-top:18px;">
-                <strong>Nope!</strong> No face detected
+            <div class="alert alert-danger" 
+            style="margin: top 10px; margin-left:30rem; margin-right:30rem; font-size: 150%">
+                <strong>Nope!</strong> Không phát hiện
             </div>
         {% endif %}
     {% endif %}
