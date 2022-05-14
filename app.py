@@ -4,7 +4,7 @@ from source.face_detection import detect_faces_with_ssd
 from source.utils import draw_rectangles, read_image, prepare_image
 from config import DETECTION_THRESHOLD
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static',)
 app.jinja_env.auto_reload = True
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
